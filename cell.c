@@ -25,6 +25,37 @@ typedef struct Cell {
     bool isInitialized;
 } Cell;
 
+struct arraylist getAdjacentCells(Cell *centerCell) {
+        int centerX = centerCell->xPos;
+        int centerY = centerCell->yPos;
+
+        int newXIndex;
+        int newYIndex;
+
+        ArrayList<Cell> adjacentCells = new ArrayList<>(4);
+
+        for (int xBump = -1; xBump < 2; xBump++) {
+            for (int yBump = -1; yBump < 2; yBump++) {
+
+                if (Math.abs(xBump) != Math.abs(yBump)) {
+                    newXIndex = centerX + xBump;
+                    newYIndex = centerY + yBump;
+                    if ((newXIndex >= 0) &&
+                            (newXIndex <= 15) &&
+                            (newYIndex >= 0) &&
+                            (newYIndex <= 15)
+                    ) {
+                        Cell adjacent = this.getCell(newXIndex, newYIndex);
+                        adjacentCells.add(adjacent);
+                    }
+
+                }
+            }
+        }
+
+        return adjacentCells;
+    }
+
  bool isTherePathBetweenCells(Cell *from, Cell *to) {
 
         int fromX = from->xPos;
@@ -38,7 +69,8 @@ typedef struct Cell {
             return true;
         } else if (((fromX == toX) && (fromY == toY + 1)) && ((!from->topBorder) && (!to->bottomBorder))) {
             return true;
-        } else return ((fromX == toX) && (fromY + 1 == toY)) && ((!from->bottomBorder) && (!to->topBorder));
+        } else
+         return ((fromX == toX) && (fromY + 1 == toY)) && ((!from->bottomBorder) && (!to->topBorder));
     }
 
 bool equalsCell(Cell *cell1, Cell *cell2){
@@ -67,6 +99,10 @@ for (int i=0; i < 16; i++){
       controlgrid[i][j] = malloc(sizeof(Cell));
       controlgrid[i][j]->xPos = i;
       controlgrid[i][j]->yPos = j;
+      controlgrid[i][j]->bottomBorder = false;
+      controlgrid[i][j]->topBorder = false;
+      controlgrid[i][j]->leftBorder = false;
+      controlgrid[i][j]->rightBorder = false;
 
       if(i == 0){
         
@@ -80,9 +116,19 @@ for (int i=0; i < 16; i++){
        printf("\n");
 
 } 
+
  
     // prints hello world
-    printf("Hello World");
+    printf("Hello World\n");
+    controlgrid[0][0]->bottomBorder = false;
+
+    controlgrid[0][1]->leftBorder = false;
+
+    //controlgrid[1][0]->leftBorder = false;
+
+
+    bool t = isTherePathBetweenCells(controlgrid[0][0], controlgrid[0][1]);
+    printf("%d\n", t);
 
 
    
