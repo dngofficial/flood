@@ -25,7 +25,7 @@ typedef struct Cell {
     bool isInitialized;
 } Cell;
 
-struct arraylist getAdjacentCells(Cell *centerCell) {
+struct arraylist getAdjacentCells(Cell *centerCell, Cell** controlgrid) {
         int centerX = centerCell->xPos;
         int centerY = centerCell->yPos;
 
@@ -37,7 +37,7 @@ struct arraylist getAdjacentCells(Cell *centerCell) {
         for (int xBump = -1; xBump < 2; xBump++) {
             for (int yBump = -1; yBump < 2; yBump++) {
 
-                if (Math.abs(xBump) != Math.abs(yBump)) {
+                if (abs(xBump) != abs(yBump)) {
                     newXIndex = centerX + xBump;
                     newYIndex = centerY + yBump;
                     if ((newXIndex >= 0) &&
@@ -45,7 +45,7 @@ struct arraylist getAdjacentCells(Cell *centerCell) {
                             (newYIndex >= 0) &&
                             (newYIndex <= 15)
                     ) {
-                        Cell adjacent = this.getCell(newXIndex, newYIndex);
+                        Cell adjacent = controlgrid[newXIndex][newYIndex];
                         adjacentCells.add(adjacent);
                     }
 
