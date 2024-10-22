@@ -4,6 +4,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include "arraylist.h"
+#include <assert.h>
+
+
 
  
 // main function -
@@ -25,14 +29,14 @@ typedef struct Cell {
     bool isInitialized;
 } Cell;
 
-struct arraylist getAdjacentCells(Cell *centerCell, Cell** controlgrid) {
+/*struct arraylist* getAdjacentCells(Cell *centerCell, Cell** controlgrid) {
         int centerX = centerCell->xPos;
         int centerY = centerCell->yPos;
 
         int newXIndex;
         int newYIndex;
 
-        ArrayList<Cell> adjacentCells = new ArrayList<>(4);
+        arraylist* adjacentCells = malloc(sizeof(arraylist));
 
         for (int xBump = -1; xBump < 2; xBump++) {
             for (int yBump = -1; yBump < 2; yBump++) {
@@ -46,7 +50,7 @@ struct arraylist getAdjacentCells(Cell *centerCell, Cell** controlgrid) {
                             (newYIndex <= 15)
                     ) {
                         Cell adjacent = controlgrid[newXIndex][newYIndex];
-                        adjacentCells.add(adjacent);
+                        arraylist_add(adjacentCells, &adjacent);
                     }
 
                 }
@@ -54,7 +58,8 @@ struct arraylist getAdjacentCells(Cell *centerCell, Cell** controlgrid) {
         }
 
         return adjacentCells;
-    }
+
+    }*/
 
  bool isTherePathBetweenCells(Cell *from, Cell *to) {
 
@@ -117,7 +122,15 @@ for (int i=0; i < 16; i++){
 
 } 
 
- 
+arraylist* int1 = arraylist_create();	
+assert(int1->size == 0);
+
+    arraylist_add(int1, (void *)5);
+    	assert(int1->size == 1);
+
+    //printf("%dHello World\n", arraylist_get(int1, 0));
+
+
     // prints hello world
     printf("Hello World\n");
     controlgrid[0][0]->bottomBorder = false;
