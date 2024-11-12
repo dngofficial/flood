@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include "arraylist.h"
+#include "ArrayList.h"
 #include <assert.h>
 
 
@@ -12,6 +12,7 @@
  
 // main function -
 // where the execution of program begins
+
 
 typedef struct Cell {
     int priority;
@@ -121,12 +122,10 @@ for (int i=0; i < 16; i++){
        printf("\n");
 
 } 
+    
+       
 
-arraylist* int1 = arraylist_create();	
-assert(int1->size == 0);
 
-    arraylist_add(int1, (void *)5);
-    	assert(int1->size == 1);
 
     //printf("%dHello World\n", arraylist_get(int1, 0));
 
@@ -135,13 +134,34 @@ assert(int1->size == 0);
     printf("Hello World\n");
     controlgrid[0][0]->bottomBorder = false;
 
-    controlgrid[0][1]->leftBorder = false;
+    //controlgrid[0][1]->leftBorder = false;
 
-    //controlgrid[1][0]->leftBorder = false;
+    controlgrid[1][0]->leftBorder = false;
 
 
-    bool t = isTherePathBetweenCells(controlgrid[0][0], controlgrid[0][1]);
+    bool t = isTherePathBetweenCells(controlgrid[0][0], controlgrid[1][0]);
     printf("%d\n", t);
+
+        printf("arraylisting");
+
+
+    ArrayList* list = ArrayCreate(10);
+
+    // Append a value to the last of the array list.
+    ArrayAppendLast(list, 10);
+    ArrayAppendLast(list, 20);
+    ArrayAppendLast(list, 30);
+    ArrayAppendLast(list, 40);
+
+    // Append a value to the first of the array list.
+    ArrayAppendFirst(list, 5);
+
+    // Append a value to the array list at the specified index.
+    ArrayAppend(list, 25, 2);
+
+    // Print the array list.
+    ArrayPrint(list);
+
 
 
    
